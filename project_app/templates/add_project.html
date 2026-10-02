@@ -1,0 +1,44 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Add Project</h2>
+  
+  <!-- Make sure to include method="POST" and enctype for the image upload -->
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <!-- Project Name Field -->
+    <div class="mb-3">
+      <label for="p_name" class="form-label">Project Name</label>
+      <input type="text" class="form-control" id="p_name" name="p_name" placeholder="Enter project name">
+    </div>
+
+    <!-- LARGE Description Field (FIXED) -->
+    <div class="mb-3">
+      <label for="p_description" class="form-label">Description</label>
+      <!-- Using textarea with rows="5" makes it tall and spacious -->
+      <textarea class="form-control" id="p_description" name="p_description" rows="5" placeholder="Enter project description"></textarea>
+    </div>
+
+    <!-- Project Image Field -->
+    <div class="mb-3">
+      <label for="image" class="form-label">Project Image</label>
+      <input type="file" class="form-control" id="image" name="image">
+    </div>
+
+    <!-- Status Field -->
+    <div class="mb-3">
+      <label for="status" class="form-label">Project Status</label>
+      <select class="form-select" id="status" name="status">
+        <option value="NotStarted">Not Started</option>
+        <option value="Inprogress">In Progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+    </div>
+
+    <!-- Corrected Button Layout -->
+    <button type="submit" class="btn btn-primary">Add Project</button>
+  </form>
+</div>
+{% endblock content %}

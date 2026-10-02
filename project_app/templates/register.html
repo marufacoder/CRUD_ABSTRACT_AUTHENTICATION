@@ -1,0 +1,44 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">User Name</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Student Name</label>
+        <input type="text" name="student_name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Student ID</label>
+        <input type="text" name="student_id" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email address</label>
+        <input type="email" name="email" class="form-control" required>
+    </div>
+
+    <!-- FIXED: Added name="password" -->
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
+
+    <!-- FIXED: Changed type to "password" -->
+    <div class="mb-3">
+        <label class="form-label">Confirm Password</label>
+        <input type="password" name="c_password" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+    <a href="{% url 'login_view' %}">Already have an account?</a>
+</form>
+{% endblock content %}

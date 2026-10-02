@@ -1,0 +1,57 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Update Project</h2>
+  
+  <!-- Make sure to include method="POST" and enctype for the image upload -->
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <!-- Project Name Field -->
+    <div class="mb-3">
+      <label for="p_name" class="form-label">Project Name</label>
+      <input type="text" class="form-control" id="p_name" name="p_name" value="{{project_data.project_name}}">
+    </div>
+
+    <!-- LARGE Description Field (FIXED) -->
+    <div class="mb-3">
+      <label for="p_description" class="form-label">Description</label>
+      <!-- Using textarea with rows="5" makes it tall and spacious -->
+      <textarea class="form-control" id="p_description" name="p_description" rows="5" >{{project_data.project_description}}</textarea>
+    </div>
+
+    <!-- Project Image Field -->
+    <div class="mb-3">
+      <label for="image" class="form-label">Project Image</label>
+      <input type="file" class="form-control" id="image" name="image">
+      <img src="{{project_data.image.url}}" width="50px"alt="">
+    </div>
+
+    <!-- Status Field -->
+    <div class="mb-3">
+      <label for="status" class="form-label">Project Status</label>
+      <select class="form-select" id="status" name="status">
+        <option value="NotStarted">
+            {% if project_data.status == 'NotStarted' %}
+            selected
+            {% endif %}
+            Not Started</option>
+        <option value="Inprogress">
+                {% if project_data.status == 'Inprogress' %}
+            selected
+            {% endif %}
+            In Progress</option>
+        <option value="Completed">
+                {% if project_data.status == 'Completed' %}
+            selected
+            {% endif %}
+            Completed</option>
+      </select>
+    </div>
+
+    <!-- Corrected Button Layout -->
+    <button type="submit" class="btn btn-primary">Add Project</button>
+  </form>
+</div>
+{% endblock content %}

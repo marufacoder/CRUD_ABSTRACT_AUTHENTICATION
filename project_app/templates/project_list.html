@@ -1,0 +1,31 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+  <h1>project list</h1>
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>SL</th>
+            <th>Project Title</th>
+            <th>Image</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for data in project_data %}
+      <tr>
+        <td>{{ forloop.counter }}</td>  <!-- Fixed typo here -->
+        <td>{{ data.project_name }}</td>
+        <td>
+          <img src="{{ data.image.url }}" width="50px" alt="">
+        </td>
+        <td> 
+          
+          <a href="{% url 'update_project' data.id %}" class="btn btn-success">Edit</a>
+          <a href="{% url 'delete_project' data.id %}" class="btn btn-danger">Delete</a> <!-- Fixed typo here -->
+        </td>
+      </tr>
+      {% endfor %} <!-- Added missing tag here -->
+    </tbody>
+  </table>
+{% endblock content %}
